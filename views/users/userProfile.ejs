@@ -1,0 +1,98 @@
+<%layout("layouts/boilerplate") %>
+<style>
+    .user-profile{
+        padding: 0 1rem 0 1rem;
+        margin-top: 1.5rem;
+        width:auto;
+        border: 1px transparent black;
+    }
+    .user-profile i{
+        margin-top: 1rem;
+        margin-left: 4rem;
+        font-size: 5rem;
+    }
+    .user-profile p{
+        margin-top: 1rem;
+        margin-left: 4rem;
+        font-size: 1.5rem;
+    }
+    .user-details{
+        padding: 0 1rem 0 1rem;
+        margin-top: 1.5rem;
+        width:auto;
+        border: 1px solid black;
+        border-radius: 25px;
+    }
+    .user-details p{
+        margin-top: 1rem;
+        margin-left: 4rem;
+        font-size: 1rem;
+    }
+    .user-details h4{
+        margin-top: 1rem;
+        margin-left: 4rem;
+        font-size: 1rem;
+    }
+    .btn-user{
+        padding-left: 1rem;
+        border-radius: 25px;
+    }
+    .btn-user:hover{
+        background-color:  #fe424d !important;
+        
+    }
+    .list-group{
+        margin-top: 1rem;
+        margin-left: 5rem;
+        font-size: 0.9rem;
+    }
+
+</style>
+
+<div class="user-profile">
+    <i class="fa-regular fa-circle-user"></i>
+    <p>Welcome back, <%= username %>! Ready for your next adventure?</p>
+</div>
+<hr>
+<div class="user-details">
+    <h4>My Details: </h4>
+    <p>UserName: <%= username%>&nbsp; <button class="btn btn-user">Edit</button></p>
+    <p>Email: <%= email%>&nbsp;<button class="btn btn-user">Edit</button></p>
+    <p>Interests:
+        <ul class="list-group">
+            <li>🌴 Beachside escapes</li>
+            <li>🏞️ Nature & mountain getaways</li>
+            <li>🏠 Entire place stays</li>
+            <li>📶 Work-friendly with fast Wi-Fi</li>
+            <li>👨‍👩‍👧‍👦 Family-friendly destinations</li>
+        </ul>
+    </p>
+
+</div>
+<br><br>
+<div class="listings mt-4">
+    <h4>Your Bookings:</h4><br>
+    <p>No bookings yet. Find your perfect stay and book it now! 🏡</p>
+
+</div>
+<br><br>
+<div class="listings mt-4">
+  <% if (totalListings.length === 0) { %>
+    <p>No listings found for you yet.</p>
+  <% } else { %>
+    <h4>Your Registered Listings:</h4><br>
+    <% totalListings.forEach(listing => { %>
+      <div class="card mb-3 p-3 shadow-sm">
+        <div class="card-body">
+            <h5><%= listing.title %></h5>
+            <p><strong>Location:</strong> <%= listing.location %></p>
+            <p><strong>Country:</strong> <%= listing.country %></p>
+            <a href="/listings/<%= listing._id %>" class="btn btn-primary btn-sm">Go to</a>
+        </div>
+
+
+    </div>
+    <% }) %>
+  <% } %>
+</div>
+<br><br>

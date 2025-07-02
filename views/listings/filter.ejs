@@ -1,0 +1,39 @@
+<% layout("layouts/boilerplate") %>
+
+<main class="container mt-4">
+  <% if (typeof currentFilter !== "undefined") { %>
+    <h3 class="mb-3">Category: <%= currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1) %></h3>
+  <% } else { %>
+    <h3 class="mb-3">All Listings</h3>
+  <% } %>
+
+  <% if (listings.length === 0) { %>
+    <p class="text-muted">No listings found in this category.</p>
+  <% } %>
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+    <% for (let listing of listings) { %>
+      <a href="/listings/<%= listing._id %>" class="listing-link text-decoration-none text-dark">
+        <div class="card listing-card h-100">
+          <img
+            src="<%= listing.image.url %>"
+            class="card-img-top"
+            alt="listing image"
+            style="height: 20rem; object-fit: cover;"
+          />
+          <div class="card-body">
+            <p class="card-text"><b><%= listing.title %></b></p>
+            <p class="card-text">Location: <b><%= listing.location %></b></p>
+            <p class="card-text">
+              <b>Price:</b>
+              <span class="before-price">₹<%= listing.price %>/night</span>
+              <i class="tax-info">
+                &nbsp; ₹<%= (listing.price * 1.18).toFixed(2) %>/night (with tax)
+              </i>
+            </p>
+          </div>
+        </div>
+      </a>
+    <% } %>
+  </div>
+</main>

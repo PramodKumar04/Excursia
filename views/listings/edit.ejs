@@ -1,0 +1,113 @@
+
+<%layout("layouts/boilerplate") %>
+<br><br>
+<h3>Edit Listing</h3>
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+      <div>
+        <label for="title" class="form-label">Title:</label>
+        <input
+          type="text"
+          value="<%= listing.title %>"
+          id="title"
+          name="title"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Please enter a title</div>
+      </div>
+      <div>
+        <label for="description" class="form-label">Description:</label>
+        <textarea
+          id="description"
+        
+          class="form-control"
+          name="description"
+          required
+
+        ><%= listing.description %></textarea>
+        <div class="invalid-feedback">Please enter a short description</div>
+      </div>
+      <div class="mb-3">
+        <p>Original Image : </p>
+        <img src="<%= originalImage %>" alt="prev-img">
+      </div>
+      <div >
+        <label for="image" class="form-label">Image</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          class="form-control"
+        />
+        <div class="invalid-feedback">Please add an image</div>
+
+      </div>
+      <div>
+        <label for="price" class="form-label">Price:</label>
+        <input
+          type="number"
+          value="<%= listing.price %>"
+          id="price"
+          name="price"
+          class="form-control"
+          required
+          min="0"
+
+        />
+        <div class="invalid-feedback">Please enter a valid price</div>
+      </div>
+      <div>
+        <label for="category" class="form-label">Category:</label>
+        <select id="category" name="category" class="form-control" required>
+          <option value=""><%= listing.category%></option>
+          <option value="mountain" <%= listing.category === "mountain" ? "selected" : "" %>>Mountain</option>
+          <option value="arctic" <%= listing.category === "arctic" ? "selected" : "" %>>Arctic</option>
+          <option value="amazing pools" <%= listing.category === "amazing pools" ? "selected" : "" %>>Amazing Pools</option>
+          <option value="beach" <%= listing.category === "beach" ? "selected" : "" %>>Beach</option>
+          <option value="city" <%= listing.category === "city" ? "selected" : "" %>>City</option>
+          <option value="farms" <%= listing.category === "farms" ? "selected" : "" %>>Farms</option>
+          <option value="camping" <%= listing.category === "camping" ? "selected" : "" %>>Camping</option>
+          <option value="igloo" <%= listing.category === "igloo" ? "selected" : "" %>>Igloo</option>
+          <option value="boats" <%= listing.category === "boats" ? "selected" : "" %>>Boats</option>
+          <option value="castles" <%= listing.category === "castles" ? "selected" : "" %>>Castles</option>
+          <option value="room" <%= listing.category === "room" ? "selected" : "" %>>Room</option>
+      </select>
+
+        <div class="invalid-feedback">Please enter a category</div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <label for="location" class="form-label">Location:</label>
+          <input
+            type="text"
+            value="<%= listing.location %>"
+            id="location"
+            name="location"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Please enter location</div>
+        </div>
+        <div class="col-md-6">
+          <label for="country" class="form-label">Country:</label>
+          <input
+            type="text"
+            value="<%= listing.country %>"
+            id="country"
+            name="country"
+            class="form-control"
+            required
+
+          />
+          <div class="invalid-feedback">Please enter country</div>
+        </div>
+      </div>
+      <br /><br />
+      <input type="submit" class="btn btn-dark add-btn"value="Update Listing">
+      <br><br>
+    </form>
+  </div>
+</div>
